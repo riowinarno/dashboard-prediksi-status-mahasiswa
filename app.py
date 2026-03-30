@@ -163,9 +163,8 @@ attendance_map = {
 # =========================
 st.title("🎓 Prediksi Status Mahasiswa")
 st.markdown("""
-Aplikasi ini digunakan untuk memprediksi status mahasiswa menjadi:
-**Dropout**, **Enrolled**, atau **Graduate**  
-berdasarkan data demografis, administratif, dan performa akademik.
+Aplikasi ini digunakan untuk memprediksi 
+apakah mahasiswa berpotensi **Dropout** atau **Graduate**.
 """)
 
 st.info("Silakan isi data mahasiswa pada form di bawah ini, lalu klik tombol **Prediksi Status**.")
@@ -536,14 +535,9 @@ if submitted:
     st.subheader("📌 Hasil Prediksi")
 
     if prediction_label == "Dropout":
-        st.error(f"Prediksi status mahasiswa: **{prediction_label}**")
-        st.markdown("Mahasiswa terindikasi memiliki risiko tinggi untuk dropout dan memerlukan perhatian lebih lanjut.")
-    elif prediction_label == "Enrolled":
-        st.warning(f"Prediksi status mahasiswa: **{prediction_label}**")
-        st.markdown("Mahasiswa diprediksi masih berada dalam status aktif/enrolled.")
+        st.error("Prediksi status akhir mahasiswa: Dropout")
     else:
-        st.success(f"Prediksi status mahasiswa: **{prediction_label}**")
-        st.markdown("Mahasiswa diprediksi memiliki peluang yang baik untuk graduate.")
+        st.success("Prediksi status akhir mahasiswa: Graduate")
 
     if hasattr(model, "predict_proba"):
         probabilities = model.predict_proba(input_data)[0]
